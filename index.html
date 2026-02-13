@@ -24,6 +24,8 @@
       padding: 24px;
       max-width: 95%;
       color: #fff;
+      position: relative;
+      z-index: 2;
     }
 
     h1 {
@@ -51,6 +53,8 @@
       position: absolute;
       background-color: #777;
       color: white;
+      left: 55%;
+      top: 70%;
     }
 
     .heart {
@@ -59,6 +63,7 @@
       font-size: 22px;
       animation: floatUp linear infinite;
       opacity: 0.7;
+      z-index: 1;
     }
 
     @keyframes floatUp {
@@ -75,7 +80,7 @@
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c2c1d6c67.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="container" id="main">
+  <div class="container" id="content">
     <h1>
       Shreya 💖  
       <br>
@@ -90,6 +95,7 @@
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
     const music = document.getElementById("music");
+    const content = document.getElementById("content");
 
     function moveNoButton() {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -98,11 +104,38 @@
       noBtn.style.top = y + "px";
     }
 
+    // NO button escapes
     noBtn.addEventListener("mouseover", moveNoButton);
     noBtn.addEventListener("touchstart", moveNoButton);
 
+    // YES button works
     yesBtn.addEventListener("click", () => {
       music.play().catch(() => {});
 
-      document.body.innerHTML = `
-        <div style="text-align:
+      content.innerHTML = `
+        <h1>Shreya 💖🥹</h1>
+        <p style="font-size:22px; margin-top:20px;">
+          I love you so much, my Jaat baby ❤️
+        </p>
+        <p style="font-size:18px; margin-top:10px; line-height:1.5;">
+          Being with you feels calm, warm, and right.  
+          I choose you today, tomorrow,  
+          and every day that follows 💕
+        </p>
+      `;
+    });
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }, 500);
+  </script>
+
+</body>
+</html>
