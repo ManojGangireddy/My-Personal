@@ -55,11 +55,6 @@
 
 <body>
 
-  <!-- Royalty-free Valentine music -->
-  <audio id="music" loop preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c2c1d6c67.mp3" type="audio/mpeg">
-  </audio>
-
   <div class="container" id="content">
     <h1>
       Shreya 💖  
@@ -74,7 +69,6 @@
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
-    const music = document.getElementById("music");
     const content = document.getElementById("content");
 
     function moveNo() {
@@ -85,18 +79,12 @@
       noBtn.style.top = y + "px";
     }
 
-    // Escape on desktop & mobile
+    // NO button escapes on desktop & mobile
     noBtn.addEventListener("mouseenter", moveNo);
     noBtn.addEventListener("touchstart", moveNo);
 
-    yesBtn.addEventListener("click", async () => {
-      try {
-        music.muted = false;
-        await music.play();
-      } catch (err) {
-        console.log("Audio blocked:", err);
-      }
-
+    // YES button works every time
+    yesBtn.addEventListener("click", () => {
       noBtn.style.display = "none";
 
       content.innerHTML = `
