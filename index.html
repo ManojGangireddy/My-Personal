@@ -6,12 +6,10 @@
   <title>For Shreya 💖</title>
 
   <style>
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
       height: 100vh;
-      font-family: "Poppins", Arial, sans-serif;
+      font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       display: flex;
       align-items: center;
@@ -21,10 +19,7 @@
 
     .container {
       text-align: center;
-      padding: 24px;
-      max-width: 95%;
-      color: #fff;
-      position: relative;
+      color: white;
       z-index: 2;
     }
 
@@ -39,43 +34,27 @@
       border-radius: 30px;
       border: none;
       cursor: pointer;
-      margin: 12px;
+      margin: 10px;
       min-width: 140px;
     }
 
     #yes {
       background-color: #ff4d6d;
       color: white;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
 
     #no {
-      position: absolute;
+      position: fixed; /* 🔑 KEY FIX */
       background-color: #777;
       color: white;
       left: 55%;
-      top: 70%;
-    }
-
-    .heart {
-      position: absolute;
-      bottom: -20px;
-      font-size: 22px;
-      animation: floatUp linear infinite;
-      opacity: 0.7;
-      z-index: 1;
-    }
-
-    @keyframes floatUp {
-      from { transform: translateY(0); opacity: 1; }
-      to { transform: translateY(-110vh); opacity: 0; }
+      top: 65%;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Non-copyrighted romantic music -->
   <audio id="music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c2c1d6c67.mp3" type="audio/mpeg">
   </audio>
@@ -97,44 +76,34 @@
     const music = document.getElementById("music");
     const content = document.getElementById("content");
 
-    function moveNoButton() {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    function moveNo() {
+      const padding = 50;
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - padding);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - padding);
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     }
 
-    // NO button escapes
-    noBtn.addEventListener("mouseover", moveNoButton);
-    noBtn.addEventListener("touchstart", moveNoButton);
+    // Mobile + desktop safe
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
 
-    // YES button works
     yesBtn.addEventListener("click", () => {
       music.play().catch(() => {});
+      noBtn.style.display = "none";
 
       content.innerHTML = `
         <h1>Shreya 💖🥹</h1>
-        <p style="font-size:22px; margin-top:20px;">
+        <p style="font-size:22px;">
           I love you so much, my Jaat baby ❤️
         </p>
-        <p style="font-size:18px; margin-top:10px; line-height:1.5;">
-          Being with you feels calm, warm, and right.  
-          I choose you today, tomorrow,  
+        <p style="font-size:18px; line-height:1.5;">
+          Being with you feels calm, warm, and right.<br>
+          I choose you today, tomorrow,<br>
           and every day that follows 💕
         </p>
       `;
     });
-
-    // Floating hearts
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }, 500);
   </script>
 
 </body>
