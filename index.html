@@ -65,25 +65,21 @@
       from { transform: translateY(0); opacity: 1; }
       to { transform: translateY(-110vh); opacity: 0; }
     }
-
-    iframe {
-      display: none;
-    }
   </style>
 </head>
 
 <body>
 
-  <!-- YouTube audio (plays after YES) -->
-  <iframe
-    id="song"
-    src="https://www.youtube.com/embed/4hZs8t3rZC8?autoplay=1"
-    allow="autoplay"
-  ></iframe>
+  <!-- Non-copyrighted romantic music -->
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_5c2c1d6c67.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="container" id="main">
-    <h1>Shreya 💖  
-      <br>Will you be my Valentine?
+    <h1>
+      Shreya 💖  
+      <br>
+      Will you be my Valentine?
     </h1>
 
     <button id="yes">YES 💕</button>
@@ -93,7 +89,7 @@
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
-    const song = document.getElementById("song");
+    const music = document.getElementById("music");
 
     function moveNoButton() {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -106,34 +102,7 @@
     noBtn.addEventListener("touchstart", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
-      song.style.display = "block";
+      music.play().catch(() => {});
 
       document.body.innerHTML = `
-        <div style="text-align:center; color:white; padding:30px;">
-          <h1>Shreya 💖🥹</h1>
-          <p style="font-size:22px; margin-top:20px;">
-            I love you so much, my Jaat baby ❤️
-          </p>
-          <p style="font-size:18px; margin-top:10px;">
-            Choosing you feels natural, peaceful, and right.  
-            I want to laugh with you, grow with you,  
-            and build something beautiful together 💕
-          </p>
-        </div>
-      `;
-    });
-
-    // Floating hearts
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = "💖";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = 4 + Math.random() * 3 + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 7000);
-    }, 500);
-  </script>
-
-</body>
-</html>
+        <div style="text-align:
