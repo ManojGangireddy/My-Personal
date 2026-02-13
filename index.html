@@ -6,7 +6,7 @@
   <title>For Shreya 💖</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     body {
@@ -29,15 +29,17 @@
 
     h1 {
       font-family: "Pacifico", cursive;
-      font-size: 32px;
-      margin-bottom: 20px;
+      font-size: 34px;
+      margin-bottom: 16px;
     }
 
     .message {
-      font-size: 16px;
-      margin-bottom: 20px;
-      min-height: 24px;
-      opacity: 0.95;
+      font-family: "Great Vibes", cursive;
+      font-size: 26px;
+      color: #ff2f68;
+      margin-bottom: 25px;
+      min-height: 40px;
+      text-shadow: 0 2px 6px rgba(255, 255, 255, 0.3);
     }
 
     button {
@@ -47,18 +49,23 @@
       border: none;
       cursor: pointer;
       margin: 10px;
-      min-width: 160px;
+      min-width: 180px;
     }
 
     #yes {
       background-color: #ff4d6d;
       color: white;
       font-weight: 600;
+      transition: transform 0.2s ease;
+    }
+
+    #yes:hover {
+      transform: scale(1.05);
     }
 
     #no {
       position: fixed;
-      background-color: #777;
+      background-color: #999;
       color: white;
       left: 55%;
       top: 65%;
@@ -68,10 +75,10 @@
     .float {
       position: fixed;
       bottom: -30px;
-      font-size: 24px;
       animation: floatUp linear forwards;
-      opacity: 0.8;
+      opacity: 0.9;
       z-index: 1;
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -141,13 +148,16 @@
 
       content.innerHTML = `
         <h1>Shreya 💖🥰</h1>
-        <p style="font-size:20px;">
+        <p style="font-size:22px; font-family:'Pacifico', cursive;">
           I love you so much, my Jaat baby ❤️
         </p>
-        <p style="font-size:17px; line-height:1.6;">
+        <p style="font-size:18px; line-height:1.6;">
           You make my world softer, warmer, and brighter.<br>
           Today, tomorrow, and every day after —<br>
           it’s you 💕
+        </p>
+        <p style="font-size:24px; margin-top:20px; font-family:'Great Vibes', cursive; color:#ff2f68;">
+          Tum mujhe poora karti ho ❤️
         </p>
       `;
 
@@ -155,19 +165,21 @@
     });
 
     function startLoveRain() {
-      const emojis = ["💞","💕","❤️","♥️","🥰","😍","😘","💝"];
+      const emojis = ["💞","💕","❤️","♥️","🥰","😍","😘","💝","💖","💗"];
 
       setInterval(() => {
-        const el = document.createElement("div");
-        el.className = "float";
-        el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-        el.style.left = Math.random() * 100 + "vw";
-        el.style.animationDuration = 4 + Math.random() * 3 + "s";
-        el.style.fontSize = 22 + Math.random() * 10 + "px";
-        document.body.appendChild(el);
+        for (let i = 0; i < 3; i++) {
+          const el = document.createElement("div");
+          el.className = "float";
+          el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+          el.style.left = Math.random() * 100 + "vw";
+          el.style.animationDuration = 3 + Math.random() * 3 + "s";
+          el.style.fontSize = 22 + Math.random() * 14 + "px";
+          document.body.appendChild(el);
 
-        setTimeout(() => el.remove(), 7000);
-      }, 250);
+          setTimeout(() => el.remove(), 7000);
+        }
+      }, 300);
     }
   </script>
 
