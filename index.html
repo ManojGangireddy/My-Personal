@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Be My Valentine 💖</title>
+  <title>For Shreya 💖</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -40,7 +38,7 @@
       border: none;
       cursor: pointer;
       margin: 12px;
-      min-width: 130px;
+      min-width: 140px;
     }
 
     #yes {
@@ -55,13 +53,6 @@
       color: white;
     }
 
-    .hint {
-      margin-top: 22px;
-      font-size: 14px;
-      opacity: 0.85;
-    }
-
-    /* Floating hearts */
     .heart {
       position: absolute;
       bottom: -20px;
@@ -71,65 +62,68 @@
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    iframe {
+      display: none;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Background Music (mobile-safe) -->
-  <audio id="music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+  <!-- YouTube audio (plays after YES) -->
+  <iframe
+    id="song"
+    src="https://www.youtube.com/embed/4hZs8t3rZC8?autoplay=1"
+    allow="autoplay"
+  ></iframe>
 
-  <div class="container">
-    <h1>Can I be your Valentine? 💖</h1>
+  <div class="container" id="main">
+    <h1>Shreya 💖  
+      <br>Will you be my Valentine?
+    </h1>
 
     <button id="yes">YES 💕</button>
     <button id="no">NO 🙃</button>
-
-    <div class="hint">Tap anywhere to start 💫</div>
   </div>
 
   <script>
     const noBtn = document.getElementById("no");
     const yesBtn = document.getElementById("yes");
-    const music = document.getElementById("music");
-
-    // Start music after first interaction (required for mobile)
-    document.body.addEventListener("click", () => {
-      music.play().catch(() => {});
-    }, { once: true });
+    const song = document.getElementById("song");
 
     function moveNoButton() {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
       const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
     }
 
     noBtn.addEventListener("mouseover", moveNoButton);
     noBtn.addEventListener("touchstart", moveNoButton);
 
     yesBtn.addEventListener("click", () => {
+      song.style.display = "block";
+
       document.body.innerHTML = `
         <div style="text-align:center; color:white; padding:30px;">
-          <h1>Yayyyy 💖🥰</h1>
-          <p style="font-size:20px;">You just made me so happy</p>
-          <p style="font-size:16px;">I can’t wait to celebrate us ❤️</p>
+          <h1>Shreya 💖🥹</h1>
+          <p style="font-size:22px; margin-top:20px;">
+            I love you so much, my Jaat baby ❤️
+          </p>
+          <p style="font-size:18px; margin-top:10px;">
+            Choosing you feels natural, peaceful, and right.  
+            I want to laugh with you, grow with you,  
+            and build something beautiful together 💕
+          </p>
         </div>
       `;
     });
 
-    // Floating hearts generator
+    // Floating hearts
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
